@@ -60,74 +60,23 @@ A full-stack social media application built with the MERN stack (MongoDB, Expres
 - React Testing Library (Frontend)
 - Cypress (E2E - optional)
 
-## 🚀 Quick Start
+## Project Ideas
 
-1. **Clone and setup**
-   ```bash
-   git clone <repository-url>
-   cd social-media-mern
-   npm run setup
-   ```
+The `Week8-Assignment.md` file includes several project ideas, but you're encouraged to develop your own idea that demonstrates your skills and interests.
 
-2. **Environment Variables**
-   ```bash
-   # Copy environment files
-   cp server/.env.example server/.env
-   cp client/.env.example client/.env
-   ```
+## Submission
 
-3. **Start Development**
-   ```bash
-   npm run dev
-   ```
+Your project will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
 
-4. **Run Tests**
-   ```bash
-   npm test
-   ```
+1. Commit and push your code regularly
+2. Include comprehensive documentation
+3. Deploy your application and add the live URL to your README.md
+4. Create a video demonstration and include the link in your README.md
 
-## 🌐 Environment Variables
+## Resources
 
-### Server (.env)
-- `MONGODB_URI` - MongoDB connection string
-- `JWT_SECRET` - JWT signing secret
-- `CLOUDINARY_URL` - Image upload service
-- `PORT` - Server port (default: 5000)
-
-### Client (.env)
-- `VITE_API_URL` - Backend API URL
-- `VITE_SOCKET_URL` - Socket.io server URL
-
-## 📚 API Documentation
-
-The API follows RESTful conventions:
-
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `GET /api/posts` - Get all posts
-- `POST /api/posts` - Create new post
-- `GET /api/users/:id` - Get user profile
-
-## 🚀 Deployment
-
-**Frontend (Vercel/Netlify)**
-```bash
-cd client && npm run build
-```
-
-**Backend (Render/Railway)**
-```bash
-cd server && npm run build
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [Express.js Documentation](https://expressjs.com/)
+- [React Documentation](https://react.dev/)
+- [Node.js Documentation](https://nodejs.org/en/docs/)
+- [GitHub Classroom Guide](https://docs.github.com/en/education/manage-coursework-with-github-classroom) 
