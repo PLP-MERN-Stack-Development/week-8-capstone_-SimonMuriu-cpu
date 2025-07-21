@@ -86,7 +86,6 @@ userSchema.virtual('followingCount').get(function() {
 })
 
 // Indexes
-userSchema.index({ username: 1 })
 userSchema.index({ email: 1 })
 userSchema.index({ name: 'text', username: 'text' })
 
