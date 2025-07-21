@@ -1,0 +1,137 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Backend Tests
+  backend-test:
+    runs-on: ubuntu-latest
+    
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+          
+    defaults:
+      run:
+        working-directory: ./server
+        
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run linting
+        run: npm run lint
+        
+      - name: Run tests
+        run: npm test
+        env:
+          NODE_ENV: test
+          MONGODB_URI: mongodb://localhost:27017/social-media-test
+          JWT_SECRET: test-jwt-secret
+          
+  # Frontend Tests
+  frontend-test:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./client
+        
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run linting
+        run: npm run lint
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Build application
+        run: npm run build
+        env:
+          VITE_API_URL: http://localhost:5000/api
+          
+  # Security Scan
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+          
+  # Deploy to staging (on develop branch)
+  deploy-staging:
+    if: github.ref == 'refs/heads/develop'
+    needs: [backend-test, frontend-test]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy to staging
+        run: |
+          echo "Deploying to staging environment..."
+          # Add your staging deployment commands here
+          
+  # Deploy to production (on main branch)
+  deploy-production:
+    if: github.ref == 'refs/heads/main'
+    needs: [backend-test, frontend-test, security-scan]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production environment..."
+          # Add your production deployment commands here
+          
+  # Notify on completion
+  notify:
+    if: always()
+    needs: [backend-test, frontend-test]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Notify team
+        run: |
+          echo "CI/CD pipeline completed"
+          # Add notification logic here (Slack, email, etc.)

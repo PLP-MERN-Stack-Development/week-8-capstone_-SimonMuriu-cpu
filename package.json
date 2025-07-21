@@ -1,0 +1,39 @@
+{
+  "name": "social-media-mern",
+  "version": "1.0.0",
+  "description": "Full-stack social media application built with MERN stack",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "client:dev": "cd client && npm run dev",
+    "server:dev": "cd server && npm run dev",
+    "client:build": "cd client && npm run build",
+    "server:build": "cd server && npm run build",
+    "test": "concurrently \"npm run client:test\" \"npm run server:test\"",
+    "client:test": "cd client && npm test",
+    "server:test": "cd server && npm test",
+    "lint": "concurrently \"npm run client:lint\" \"npm run server:lint\"",
+    "client:lint": "cd client && npm run lint",
+    "server:lint": "cd server && npm run lint",
+    "setup": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/social-media-mern"
+  },
+  "keywords": [
+    "social-media",
+    "mern",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express",
+    "socket.io"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
