@@ -60,18 +60,7 @@ A full-stack social media application built with the MERN stack (MongoDB, Expres
 - React Testing Library (Frontend)
 - Cypress (E2E - optional)
 
-## Project Ideas
 
-The `Week8-Assignment.md` file includes several project ideas, but you're encouraged to develop your own idea that demonstrates your skills and interests.
-
-## Submission
-
-Your project will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
-
-1. Commit and push your code regularly
-2. Include comprehensive documentation
-3. Deploy your application and add the live URL to your README.md
-4. Create a video demonstration and include the link in your README.md
 
 ## Resources
 
@@ -80,3 +69,7 @@ Your project will be automatically submitted when you push to your GitHub Classr
 - [React Documentation](https://react.dev/)
 - [Node.js Documentation](https://nodejs.org/en/docs/)
 - [GitHub Classroom Guide](https://docs.github.com/en/education/manage-coursework-with-github-classroom) 
+
+
+# Render deployment link:
+https://week-8-capstone-simonmuriu-cpu.onrender.com/
