@@ -77,10 +77,11 @@ app.use('/api/posts', postRoutes)
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../../client/dist')))
+  const clientDistPath = path.resolve(__dirname, '../client/dist')
+  app.use(express.static(clientDistPath))
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../client/dist/index.html'))
+    res.sendFile(path.join(clientDistPath, 'index.html'))
   })
 }
 
